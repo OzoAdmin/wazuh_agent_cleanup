@@ -1,0 +1,1 @@
+# wazuh_agent_cleanup
