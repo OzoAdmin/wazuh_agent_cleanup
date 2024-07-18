@@ -39,11 +39,11 @@ This Bash script removes inactive Wazuh agents that have not connected for more 
 After running the script, you will see a summary similar to this:
 
 
-## Summary:
+\`\`\` Summary:
 ==============================
 Total number of agents: 10
 Number of inactive agents: 2
-\`\`\`
+
 Deleted agents:
 ID   | Name                | Last connection
 ---- | ------------------- | -------------------
