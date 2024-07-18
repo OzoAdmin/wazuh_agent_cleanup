@@ -25,9 +25,9 @@ This Bash script removes inactive Wazuh agents that have not connected for more 
    chmod +x remove_inactive_agents.sh
    ```
 3. Run the script:
-   \`\`\`bash
+   ```bash
    ./remove_inactive_agents.sh
-   \`\`\`
+   ```
 
 ## Configuration
 
@@ -39,7 +39,7 @@ This Bash script removes inactive Wazuh agents that have not connected for more 
 After running the script, you will see a summary similar to this:
 
 
-\`\`\` Summary:
+```Summary:
 ==============================
 Total number of agents: 10
 Number of inactive agents: 2
@@ -49,7 +49,7 @@ ID   | Name                | Last connection
 ---- | ------------------- | -------------------
 002  | Agent-2             | 2023-06-15 14:25:30
 005  | Agent-5             | 2023-05-20 09:14:12
-\`\`\`
+```
 
 ## Notes
 
