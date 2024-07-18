@@ -21,9 +21,7 @@ This Bash script removes inactive Wazuh agents that have not connected for more 
 
 1. Copy the script to a file, e.g., `remove_inactive_agents.sh`.
 2. Make the script executable:
-   \`\`\`bash
-   chmod +x remove_inactive_agents.sh
-   \`\`\`
+   \`\`\`chmod +x remove_inactive_agents.sh\`\`\`
 3. Run the script:
    \`\`\`bash
    ./remove_inactive_agents.sh
