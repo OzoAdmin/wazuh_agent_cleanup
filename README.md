@@ -1,25 +1,23 @@
-
 # Wazuh Agent Cleanup Script
 
-This Bash script removes inactive Wazuh agents that have not connected for more than a specified threshold of days. It also generates a summary table showing the total number of agents, the number of inactive agents, and the details of the deleted agents.
+This Bash script removes inactive Wazuh agents that have not connected for more than a specified threshold of days. It prompts the user for the inactivity threshold (default 30 days), displays a list of inactive agents with their details, and after user confirmation, deletes those agents. Finally, it shows a summary of the deleted agents.
 
 ## Features
 
-- Removes Wazuh agents that have been inactive for more than the specified threshold of days.
-- Provides a summary table with:
-  - Total number of agents.
-  - Number of inactive agents.
-  - ID, name, and last connection time of deleted agents.
-- Runs silently without displaying any intermediate messages, but provides a detailed summary at the end.
+- Prompts for the number of days to consider agents inactive (default: 30).
+- Lists inactive agents with ID, name, and last connection timestamp.
+- Requires user confirmation (y/n) before deleting agents.
+- Provides a final summary table of deleted agents.
+- Helps automate cleanup of inactive agents in Wazuh/OSSEC environments.
 
 ## Requirements
 
-- Wazuh installed with the `agent_control` and `manage_agents` utilities available.
+- Wazuh installed with `agent_control` and `manage_agents` utilities available.
 - Bash shell.
 
 ## Usage
 
-1. Copy the script to a file, e.g., `remove_inactive_agents.sh`.
+1. Copy the script to a file, for example: `remove_inactive_agents.sh`.
 2. Make the script executable:
    ```bash
    chmod +x remove_inactive_agents.sh
@@ -31,31 +29,38 @@ This Bash script removes inactive Wazuh agents that have not connected for more 
 
 ## Configuration
 
-- `OSSEC_BIN_DIR`: Directory where Wazuh binaries are located (default: `/var/ossec/bin`).
-- `THRESHOLD_DAYS`: Number of days after which an agent is considered inactive (default: `30`).
+- `OSSEC_BIN_DIR`: Directory where Wazuh binaries are located. Default is `/var/ossec/bin`.
+- The script asks for the inactivity threshold (in days) at runtime, defaulting to 30 if no input or invalid input is provided.
 
 ## Example Output
 
-After running the script, you will see a summary similar to this:
-
+After running the script, an example output flow:
 
 ```
-Summary:
-==============================
-Total number of agents: 10
-Number of inactive agents: 2
+How many days back to check for inactive agents? (default 30):
 
-Deleted agents:
-ID   | Name                | Last connection
----- | ------------------- | -------------------
-002  | Agent-2             | 2023-06-15 14:25:30
-005  | Agent-5             | 2023-05-20 09:14:12
+Inactive agents found (inactive for more than 30 days):
+ID   | Name               | Last connection
+-----|--------------------|---------------------
+002  | Agent-2            | 2023-06-15 14:25:30
+005  | Agent-5            | 2023-05-20 09:14:12
+
+Do you want to delete these agents? (y/n): y
+
+Deleted agents summary:
+ID   | Name               | Last connection
+-----|--------------------|---------------------
+002  | Agent-2            | 2023-06-15 14:25:30
+005  | Agent-5            | 2023-05-20 09:14:12
+
+Deletion completed.
 ```
 
 ## Notes
 
-- The script uses a temporary file to store the summary, which is deleted after displaying the summary.
-- Ensure you have the necessary permissions to run `agent_control` and `manage_agents` commands.
+- The script requires sufficient permissions to run the `agent_control` and `manage_agents` commands.
+- It only deletes agents after explicit confirmation from the user.
+- Makes use of standard Bash utilities and date formatting.
 
 ## License
 
